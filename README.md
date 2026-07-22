@@ -9,14 +9,14 @@ A modern and interactive AI landing page that demonstrates a three-stage data pi
 ## 🌐 Live Demo
 
 🔗 **Live Website:**  
-<YOUR_LIVE_DEMO_LINK>
+[LIVE_DEMO_LINK](https://x-ai-sand.vercel.app/)
 
 ---
 
 ## 📂 GitHub Repository
 
 🔗 **Repository:**  
-<YOUR_GITHUB_REPOSITORY_LINK>
+[GITHUB_REPOSITORY_LINK](https://github.com/rakibul875/x-ai)
 
 ---
 
@@ -283,13 +283,13 @@ A short explanation of the project's animation and interaction decisions.
 **Rakibul Islam Ashik**
 
 GitHub:  
-<YOUR_GITHUB_PROFILE>
+[GITHUB_PROFILE](https://github.com/rakibul875)
 
 LinkedIn:  
-<YOUR_LINKEDIN_PROFILE>
+[LINKEDIN_PROFILE](https://www.linkedin.com/in/rakibul-islam-ashik/)
 
 Portfolio:  
-<YOUR_PORTFOLIO_LINK>
+[PORTFOLIO_LINK](https://my-portfolio-4kxt.vercel.app/)
 
 ---
 
