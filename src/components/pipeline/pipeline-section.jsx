@@ -19,69 +19,70 @@ export function PipelineSection() {
 
   const activeStage = PIPELINE_STAGES[activeIndex];
 
-  // 🖱️ Mouse Wheel Handler Logic
+
   useEffect(() => {
     const handleWheel = (e) => {
       if (!containerRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
-      // স্ক্রিনে সেকশনটি পুরোপুরি ভিজিবল থাকলে কেবল হুইল ইভেন্ট কাজ করবে
-      const isInViewport = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      const windowHeight = window.innerHeight;
 
-      if (!isInViewport) return;
 
-      // দ্রুত বারবার স্ক্রোল করলে যেন ধীরগতিতে (Smooth Cooldown) চেঞ্জ হয়
-      if (isCooldownRef.current) return;
+      const isVisible = rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2;
 
-      if (e.deltaY > 20) {
-        // Scroll Down -> Next Stage
-        if (activeIndex < PIPELINE_STAGES.length - 1) {
-          e.preventDefault();
+      if (!isVisible) return;
+
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+
+      if (isScrollingDown && activeIndex < PIPELINE_STAGES.length - 1) {
+        e.preventDefault();
+        if (!isCooldownRef.current) {
           setActiveIndex((prev) => prev + 1);
           triggerCooldown();
         }
-      } else if (e.deltaY < -20) {
-        // Scroll Up -> Previous Stage
-        if (activeIndex > 0) {
-          e.preventDefault();
+      }
+
+      else if (isScrollingUp && activeIndex > 0) {
+        e.preventDefault();
+        if (!isCooldownRef.current) {
           setActiveIndex((prev) => prev - 1);
           triggerCooldown();
         }
       }
+
     };
 
     const triggerCooldown = () => {
       isCooldownRef.current = true;
-      // 800ms কুলডাউন দেওয়া হয়েছে যাতে ধীরগতিতে ৩টি স্টেজ একটির পর একটি সুন্দরভাবে চেঞ্জ হয়
       setTimeout(() => {
         isCooldownRef.current = false;
-      }, 800);
+      }, 650);
     };
 
-    const element = containerRef.current;
-    if (element) {
-      element.addEventListener('wheel', handleWheel, { passive: false });
-    }
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      if (element) {
-        element.removeEventListener('wheel', handleWheel);
-      }
+      window.removeEventListener('wheel', handleWheel);
     };
   }, [activeIndex]);
 
   return (
     <div className="w-full bg-[#09090B] border-t border-[#27272A]">
-      <section ref={containerRef} className="relative w-full max-w-6xl mx-auto px-6 py-20 min-h-[90vh] flex flex-col justify-center">
-        <div className="py-8">
+      <section
+        ref={containerRef}
+        className="relative w-full max-w-6xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center"
+      >
+        <div className="py-4">
 
-          {/* Section Header */}
+
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={FADE_UP_VARIANT}
-            className="mb-8 md:mb-10 text-center md:text-left"
+            className="mb-8 md:mb-12 text-center md:text-left"
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-50">
               Three stages. <span className="text-cyan-400">One unified pipeline.</span>
@@ -93,7 +94,7 @@ export function PipelineSection() {
 
           <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start relative">
 
-            {/* Left Side: Clickable & Scrollable Stage Cards */}
+
             <div className="md:col-span-5 lg:col-span-4 flex flex-col gap-3">
               {PIPELINE_STAGES.map((stage, index) => {
                 const Icon = iconMap[stage.icon];
@@ -137,15 +138,15 @@ export function PipelineSection() {
               })}
             </div>
 
-            {/* Right Side: Dynamic Detail Card */}
+
             <div className="md:col-span-7 lg:col-span-8 md:min-h-[360px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStage.id}
-                  initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                  initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -20, filter: "blur(6px)" }}
-                  transition={{ duration: 0.5, ease: "easeOut" }} // ট্রানজিশন কিছুটা স্লো এবং স্মুথ করা হয়েছে
+                  exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="h-full rounded-2xl border border-[#27272A] bg-[#18181B] overflow-hidden flex flex-col relative"
                 >
                   <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
