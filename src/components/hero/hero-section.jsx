@@ -25,19 +25,19 @@ export function HeroSection() {
       const fullText = PHRASES[i];
 
       setText(
-        isDeleting 
-          ? fullText.substring(0, text.length - 1) 
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
           : fullText.substring(0, text.length + 1)
       );
 
       let nextSpeed = isDeleting ? 45 : 90;
 
       if (!isDeleting && text === fullText) {
-        // Pause at the end of word before deleting
+
         nextSpeed = 2000;
         setIsDeleting(true);
       } else if (isDeleting && text === '') {
-        // Switch to next word and pause briefly
+
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
         nextSpeed = 500;
@@ -53,9 +53,9 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#09090B] text-zinc-50 px-4 md:px-6">
       <DataCanvas />
-      
+
       <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center gap-8 pt-20">
-        
+
         <motion.div
           initial="hidden"
           animate="visible"
@@ -111,7 +111,7 @@ export function HeroSection() {
             Start Building Free
             <ArrowRight className="w-4 h-4" />
           </button>
-          
+
           <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-md border border-[#27272A] bg-[#18181B]/80 backdrop-blur-sm text-zinc-300 hover:bg-[#27272A] hover:text-zinc-50 transition-colors w-full sm:w-auto shadow-xl">
             <BookOpen className="w-4 h-4" />
             Explore Documentation
