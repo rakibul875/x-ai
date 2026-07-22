@@ -8,7 +8,7 @@ export function SignatureSection() {
   return (
     <section className="py-24 bg-[#09090B] px-4 md:px-6 border-t border-[#27272A] overflow-hidden">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-24">
-        
+
         <div className="flex-1 text-center md:text-left z-10">
           <motion.div
             initial="hidden"
@@ -34,11 +34,11 @@ export function SignatureSection() {
         </div>
 
         <div className="flex-1 w-full h-[400px] md:h-[500px] relative">
-          {/* Subtle background glow */}
+
           <div className="absolute inset-0 bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
           <InteractiveCube />
         </div>
-        
+
       </div>
     </section>
   );

@@ -41,14 +41,14 @@ export function DashboardPreview() {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-xl border border-[#27272A] bg-[#18181B] overflow-hidden flex flex-col md:flex-row shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         >
-          {/* Sidebar */}
+
           <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-[#27272A] bg-[#18181B] p-4 flex flex-row md:flex-col gap-2 overflow-x-auto hide-scrollbar">
             <div className="hidden md:flex items-center gap-2 px-3 pb-6 pt-2">
               <div className="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
@@ -56,7 +56,7 @@ export function DashboardPreview() {
               </div>
               <span className="font-medium text-zinc-100">Project X</span>
             </div>
-            
+
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
@@ -74,14 +74,14 @@ export function DashboardPreview() {
             ))}
           </div>
 
-          {/* Main Content Area */}
+
           <div className="flex-1 p-6 md:p-8 bg-[#09090B]">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <h3 className="text-xl font-semibold text-zinc-100 capitalize">
                 {activeTab} Overview
               </h3>
-              
-              {/* Tab Switcher */}
+
+
               <div className="flex items-center p-1 rounded-lg bg-[#18181B] border border-[#27272A]">
                 {['1h', '24h', '7d', '30d'].map((tf) => (
                   <button
@@ -100,7 +100,7 @@ export function DashboardPreview() {
               </div>
             </div>
 
-            {/* Metrics Grid */}
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
               {METRICS.map((metric, idx) => (
                 <div key={idx} className="p-4 rounded-xl bg-[#18181B] border border-[#27272A]">
@@ -121,11 +121,11 @@ export function DashboardPreview() {
               ))}
             </div>
 
-            {/* Mock Chart Area */}
+
             <div className="h-48 md:h-64 rounded-xl border border-[#27272A] bg-[#18181B] flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272A_1px,transparent_1px),linear-gradient(to_bottom,#27272A_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
-              
-              {/* Animated mock line chart using SVG */}
+
+
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 200" preserveAspectRatio="none">
                 <motion.path
                   initial={{ pathLength: 0, opacity: 0 }}
